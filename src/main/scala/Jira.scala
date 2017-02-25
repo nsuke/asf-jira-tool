@@ -20,7 +20,6 @@ import scala.util.{ Try, Success, Failure }
 import java.io.IOException
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
-// import de.heikoseeberger.akkahttpjson4s.Json4sSupport._
 
 trait JiraJsonProtocol extends DefaultJsonProtocol {
   implicit val jqlFormat = jsonFormat4(Jql)
@@ -30,23 +29,6 @@ trait JiraJsonProtocol extends DefaultJsonProtocol {
   implicit val issueFormat = jsonFormat3(JiraIssue)
   implicit val responseFormat = jsonFormat2(JiraResponse)
   implicit val errorFormat = jsonFormat1(JiraError)
-
-  //   implicit object Issue3JsonFormat extends RootJsonFormat[JiraIssue1] {
-  //     def write(x: JiraIssue1) = JsNumber(42)
-  //     def read(value: JsValue) : JiraIssue1 = value match {
-  //       case JsObject(fields) =>
-  //         fields.keys.foreach(println(_))
-  //         fields("fields") match {
-  //           case JsObject(fields) =>
-  //             fields.keys.foreach(s => println(s"  ${s}"))
-  //             fields("resolution") match {
-  //               case str: JsString => JiraIssue1(str.value)
-  //             }
-  //           case x => deserializationError("Expected Map as JsObject, but got " + x)
-  //         }
-  //       case x => deserializationError("Expected Map as JsObject, but got " + x)
-  //     }
-  //   }
 }
 
 case class Jql(jql: String, startAt: Int, maxResults: Int, fields: List[String])
